@@ -47,16 +47,49 @@
  */
 export function createPaanOrder(basePaan, customizations) {
   // Your code here
+  if (typeof basePaan !== "object" || basePaan === null) return {};
+  if (typeof customizations !== "object") return { ...basePaan };
+  return Object.assign({}, basePaan, customizations);
 }
+// console.log(
+//   createPaanOrder(
+//     { type: "meetha", price: 30 },
+//     { extra: "gulkand", price: 50 },
+//   ),
+// );
 
 export function freezeMenu(menu) {
   // Your code here
+  if (typeof menu !== "object" || menu === null) return Object.freeze({});
+  return Object.freeze(menu);
 }
+// console.log(freezeMenu({ meetha: 30 }));
 
 export function updatePrices(menu, increase) {
-  // Your code here
+  // Your code herepr
+
+  if (typeof menu !== "object" || menu === null || typeof increase !== "number")
+    return {};
+
+  return Object.fromEntries(
+    Object.entries(menu).map(([menu, price]) => {
+      return [menu, price + increase];
+    }),
+  );
 }
+console.log(updatePrices({ meetha: 30, saada: 20, banarasi: 50 }, 10));
 
 export function mergeDailySpecials(regularMenu, specialsMenu) {
   // Your code here
+  if (typeof regularMenu !== "object" || typeof specialsMenu !== "object")
+    return {};
+
+  let mergedObj = { ...regularMenu, ...specialsMenu };
+  return mergedObj;
 }
+// console.log(
+//   mergeDailySpecials(
+//     { meetha: 30, banarasi: 20 },
+//     { chocolate: 60, meetha: 40, banarasi: 50 },
+//   ),
+// );

@@ -1,3 +1,5 @@
+import { writePostcard } from "./09-postcard-writer";
+
 /**
  * 📦 Pincode Type Checker - Type Checking
  *
@@ -59,20 +61,41 @@
  */
 export function getDataType(value) {
   // Your code here
+  if (typeof value === "number") return "number";
+  if (typeof value === "string") return "string";
+  if (typeof value === "boolean") return "boolean";
+  if (value === null) return "null";
+  if (value === "undefined") return "undefined";
+  if (Array.isArray(value)) return "array";
+
+  if (typeof value === "function") return "function";
+  if (typeof value === "object") return "object";
+
+  return typeof value;
 }
+// console.log(getDataType([]));
 
 export function isValidParcelWeight(weight) {
   // Your code here
+  if (Number.isFinite(weight) && weight > 0) return true;
+  else if (Number.isNaN(weight) || weight !== "number" || weight === Infinity)
+    return false;
 }
+console.log(isValidParcelWeight(2.5));
 
 export function isWholeNumber(value) {
   // Your code here
+  return Number.isInteger(value);
 }
+console.log(isWholeNumber("42"));
 
 export function isNotANumber(value) {
   // Your code here
+  return Number.isNaN(value);
 }
 
 export function isTruthy(value) {
   // Your code here
+  return Boolean(value);
 }
+console.log(isTruthy([]));

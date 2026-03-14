@@ -53,20 +53,43 @@
  */
 export function writePostcard(sender, receiver, message) {
   // Your code here
+  if (typeof sender !== "string" || sender.trim() === "") return "";
+  if (typeof receiver !== "string" || receiver.trim() === "") return "";
+  if (typeof message !== "string" || message.trim() === "") return "";
+  return `Priy ${receiver},\n\n${message}\n\nAapka/Aapki,\n${sender}`;
 }
+// console.log(writePostcard("Guddu", "Dadi ji", "Hum theek hain"));
 
 export function isValidPincode(code) {
-  // Your code here
+  if (typeof code !== "string") return false;
+  if (code.length !== 6) return false;
+  if (code.startsWith("0")) return false;
+  return /^\d+$/.test(code);
 }
+// console.log(isValidPincode("000001"));
 
 export function formatPostcardField(label, value, width) {
   // Your code here
+  if (typeof label !== "string" || typeof value !== "string") return "";
+  if (width === undefined) return label.padEnd(12) + ": " + value;
+  return label.padEnd(width) + ": " + value;
 }
+// console.log(formatPostcardField("To", "Dadi ji", 8));
+// console.log(formatPostcardField("To", "Dadi ji", 12));
 
 export function isFromState(address, stateCode) {
   // Your code here
+  if (typeof address !== "string" || typeof stateCode !== "string")
+    return false;
+  return address.endsWith(stateCode);
 }
+// console.log(isFromState("Guddu, Lucknow, UP", "UP"));
 
 export function countVowels(message) {
   // Your code here
+  if (typeof message !== "string" || message.trim() === "") return 0;
+  let result = message.match(/[aeiouAEIOU]/g);
+  if (!result) return 0;
+  return result ? result.length : 0;
 }
+// console.log(countVowels(" Amruta patil"));

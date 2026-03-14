@@ -53,20 +53,42 @@
  */
 export function parcelToJSON(parcel) {
   // Your code here
+  try {
+    if (parcel === undefined) return "";
+    return JSON.stringify(parcel);
+  } catch (error) {
+    return "";
+  }
 }
+// console.log(parcelToJSON({ id: "P001", weight: 2.5 }));
 
 export function jsonToParcel(jsonString) {
   // Your code here
+  if (typeof jsonString !== "string" || jsonString.trim() === "") return null;
+  try {
+    return JSON.parse(jsonString);
+  } catch (error) {
+    return null;
+  }
 }
+// console.log(jsonToParcel('{"id":"P001","weight":2.5}'));
 
 export function convertToString(value) {
   // Your code here
+  return String(value);
 }
+// console.log(convertToString("amruta"));
 
 export function convertToNumber(value) {
   // Your code here
+  if (Number.isNaN(value)) return NaN;
+  return Number(value);
 }
+// console.log(convertToNumber("hello"));
 
 export function stringToChars(str) {
   // Your code here
+  if (typeof str !== "string") return [];
+  return Array.from(str);
 }
+console.log(stringToChars("amruta"));
